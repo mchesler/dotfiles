@@ -14,3 +14,6 @@ export HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help"
 
 # Make sure history always exists in history file
 export PROMPT_COMMAND="history -n; history -a"
+
+# Set the path
+export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
