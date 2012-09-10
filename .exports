@@ -17,3 +17,6 @@ export PROMPT_COMMAND="history -n; history -a"
 
 # Set the path
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# Python Library Path
+export PYTHONPATH=~/lib/python2.7/site-packages
