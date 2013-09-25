@@ -1,6 +1,6 @@
 # Load ~/.extra, ~/.bash_prompt, ~/.exports, ~/.aliases and ~/.functions
 # ~/.extra can be used for settings you don’t want to commit
-for file in ~/.{extra,bash_prompt,exports,aliases,functions}; do
+for file in ~/.{bashrc,extra,bash_prompt,exports,aliases,functions}; do
 	[ -r "$file" ] && source "$file"
 done
 unset file
@@ -26,3 +26,6 @@ export LANG="en_US"
 complete -W "NSGlobalDomain" defaults
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
+
