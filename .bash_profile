@@ -18,11 +18,17 @@ shopt -s cdspell
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US"
 
-# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
-[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)" scp sftp ssh
+# Build a list of strings to be completed for ssh/scp/sftp
+SSH_COMP_STR=""
 
-# Add tab completion for SSH hostnames based on ~/.ssh/known_hosts
-[ -e "$HOME/.ssh/known_hosts" ] && complete -o "default" -o "nospace" -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" scp sftp ssh
+# Grab "Host" entries from ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && SSH_COMP_STR="${SSH_COMP_STR} $(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2)"
+
+# Grab all hosts from ~/.ssh/known_hosts
+[ -e "$HOME/.ssh/known_hosts" ] && SSH_COMP_STR="${SSH_COMP_STR} $(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)"
+
+# Set up strings found above for tab completion
+complete -o "default" -o "nospace" -W "${SSH_COMP_STR}" scp sftp ssh
 
 # Add tab completion for `defaults read|write NSGlobalDomain`
 # You could just use `-g` instead, but I like being explicit

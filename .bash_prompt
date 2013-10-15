@@ -43,14 +43,35 @@ export WHITE
 export BOLD
 export RESET
 
+function is_git_repo() {
+	[[ -n $(git branch 2> /dev/null) ]]
+}
+
 function parse_git_dirty() {
 	[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
 }
 
 function parse_git_branch() {
-	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
+	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/${WHITE} | ${PURPLE}on \1$(parse_git_dirty)/"
 }
 
-PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
+function is_hg_repo() {
+	[[ -n $(hg branch 2> /dev/null) ]]
+}
+
+function parse_hg_dirty() {
+	[[ $(hg status 2> /dev/null | wc -l) -ne 0 ]] && echo "*"
+}
+
+function parse_hg_branch() {
+	echo "${WHITE} | ${ORANGE}on $(hg branch 2> /dev/null)$(parse_hg_dirty)"
+}
+
+function display_repo_info {
+	is_git_repo && parse_git_branch
+	is_hg_repo && parse_hg_branch
+}
+
+PS1="\[$PURPLE\]\t \d \[$WHITE\]| \[$GREEN\]\w\$(display_repo_info)\n\[${BOLD}${MAGENTA}\]\u\[$WHITE\]@\[$ORANGE\]\h\n\[$WHITE\]\$ \[$RESET\]"
 
 
