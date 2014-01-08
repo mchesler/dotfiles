@@ -7,12 +7,17 @@ export LESS_TERMCAP_md="$ORANGE"
 # Colors in less
 export LESS="-eirMX"
 
-# Larger bash history (allow 32³ entries; default is 500)
-export HISTSIZE=32768
+# Make bash history behave better
+shopt -s histappend
+# Larger bash history (allow 500k entries; default is 500)
+export HISTSIZE=500000
 export HISTFILESIZE=$HISTSIZE
+# Don't put duplicate lines in the history
 export HISTCONTROL=ignoredups
 # Make some commands not show up in history
 export HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help"
+# Include timestamps when displaying history
+export HISTTIMEFORMAT="%F %T "
 
 # Make sure history always exists in history file
 export PROMPT_COMMAND="history -n; history -a"
