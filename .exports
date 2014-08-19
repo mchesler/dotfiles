@@ -15,7 +15,7 @@ export HISTFILESIZE=$HISTSIZE
 # Don't put duplicate lines in the history
 export HISTCONTROL=ignoredups
 # Make some commands not show up in history
-export HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help"
+export HISTIGNORE="ls:cd:cd -:pwd;exit:date:* --help"
 # Include timestamps when displaying history
 export HISTTIMEFORMAT="%F %T "
 
@@ -27,3 +27,5 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # Python Library Path
 export PYTHONPATH=~/lib/python2.7/site-packages
+
+export JAVA_HOME=$(/usr/libexec/java_home)
