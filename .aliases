@@ -5,7 +5,7 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
+alias d="cd ~/Dropbox"
 alias w="cd ~/Workspace"
 alias g="git"
 alias v="vim"
@@ -36,9 +36,6 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade'
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en1"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
-
-# Enhanced WHOIS lookups
-alias whois="whois -h whois-servers.net"
 
 # Flush Directory Service cache
 alias flush="dscacheutil -flushcache"
@@ -101,7 +98,10 @@ alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 10'"
 alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
 
-# OSX doesn't come with ssh-copy-id.  This does the same.
-function ssh-copy-id { cat ~/.ssh/id_rsa.pub | ssh $1 "(cat > tmp.pubkey ; mkdir -p .ssh ; touch .ssh/authorized_keys ; sed -i.bak -e '/$(awk '{print $NF}' ~/.ssh/id_rsa.pub)/d' .ssh/authorized_keys; cat tmp.pubkey >> .ssh/authorized_keys; rm tmp.pubkey)"; }
+# OSX doesn't come with ssh_copy_id.  This does the same.
+function ssh_copy_id { cat ~/.ssh/id_rsa.pub | ssh $1 "(cat > tmp.pubkey ; mkdir -p .ssh ; touch .ssh/authorized_keys ; sed -i.bak -e '/$(awk '{print $NF}' ~/.ssh/id_rsa.pub)/d' .ssh/authorized_keys; cat tmp.pubkey >> .ssh/authorized_keys; rm tmp.pubkey)"; }
 
-export -f ssh-copy-id
+export -f ssh_copy_id
+
+# Rebuild SSH completion
+alias sshcomp='source ~/.ssh_completion'
