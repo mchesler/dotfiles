@@ -27,3 +27,8 @@ complete -W "NSGlobalDomain" defaults
 [ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
 [ -f ~/.ssh_completion ] && source ~/.ssh_completion
+
+# Load bash completion extensions from brew
+if command -v brew >/dev/null 2>&1 && [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+fi
