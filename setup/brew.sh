@@ -24,6 +24,10 @@ brew install tmux
 brew install xz
 brew install youtube-dl
 
+brew install awscli
+brew install ec2-api-tools
+brew install s3cmd
+
 brew install rbenv
 brew install ruby-build
 rbenv init

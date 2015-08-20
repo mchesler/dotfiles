@@ -54,6 +54,9 @@ GITHUB_USER="mchesler"
 git config --global github.user "$GITHUB_USER"
 GITHUB_TOKEN="REDACTED"
 git config --global github.token "$GITHUB_TOKEN"
+
+export AWS_ACCESS_KEY="REDACTED"
+export AWS_SECRET_KEY="REDACTED"
 ```
 
 ## Feedback
