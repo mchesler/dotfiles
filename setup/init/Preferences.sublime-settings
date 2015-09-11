@@ -1,0 +1,12 @@
+{
+	"ensure_newline_at_eof_on_save": true,
+	"font_size": 12.0,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"tab_size": 2,
+	"trailing_spaces_include_current_line": false,
+	"trailing_spaces_trim_on_save": true,
+	"translate_tabs_to_spaces": true
+}
