@@ -1,5 +1,5 @@
 {
-	"color_scheme": "Monokai",
+	"color_scheme": "Packages/Color Scheme - Default/Monokai.tmTheme",
 	"default_encoding": "UTF-8",
 	"default_line_ending": "unix",
 	"font_face": "Anonymous Pro",
@@ -15,11 +15,11 @@
 	"translate_tabs_to_spaces": true,
 	"ensure_newline_at_eof_on_save": true,
 	"highlight_modified_tabs": true,
-	"rulers":
-	[
-		80
-	],
 	"show_encoding": true,
+	"match_brackets": true,
+	"match_brackets_square": true,
+	"match_brackets_braces": true,
+	"match_brackets_angle": true,
 	"show_line_endings": true,
 	"trim_trailing_white_space_on_save": true
 }
