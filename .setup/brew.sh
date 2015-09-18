@@ -27,9 +27,3 @@ brew install youtube-dl
 brew install awscli
 brew install ec2-api-tools
 brew install s3cmd
-
-brew install rbenv
-brew install ruby-build
-rbenv init
-rbenv install 1.9.3-p551
-rbenv install 2.1.2
