@@ -28,9 +28,16 @@ complete -W "NSGlobalDomain" defaults
 
 [ -f ~/.ssh_completion ] && source ~/.ssh_completion
 
-# Load bash completion extensions from brew
-if command -v brew >/dev/null 2>&1 && [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
+if command -v brew >/dev/null 2>&1; then
+  # Load bash completion extensions from brew
+  if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    . $(brew --prefix)/etc/bash_completion
+  fi
+
+  # Load nvm.sh from brew
+  if [ -f $(brew --prefix nvm)/nvm.sh ]; then
+    source $(brew --prefix nvm)/nvm.sh
+  fi
 fi
 
 if command -v rbenv >/dev/null 2>&1; then

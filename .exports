@@ -29,3 +29,5 @@ export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export PYTHONPATH=~/lib/python2.7/site-packages
 
 export JAVA_HOME=$(/usr/libexec/java_home)
+
+export NVM_DIR=~/.nvm
