@@ -105,3 +105,7 @@ export -f ssh_copy_id
 
 # Rebuild SSH completion
 alias sshcomp='source ~/.ssh_completion'
+
+function find_aws_key { if [ -z "$1" ];then echo "NEED ACCESS KEY";else aws --output text iam list-users | awk '{print $NF}' | xargs -P10 -n1 aws --output text iam list-access-keys --user-name | grep "$1"; fi }
+
+export -f find_aws_key
