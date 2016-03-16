@@ -31,3 +31,5 @@ export PYTHONPATH=~/lib/python2.7/site-packages
 export JAVA_HOME=$(/usr/libexec/java_home)
 
 export NVM_DIR=~/.nvm
+
+export PATH=/usr/local/sbin:$PATH
