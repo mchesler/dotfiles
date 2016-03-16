@@ -109,3 +109,7 @@ alias sshcomp='source ~/.ssh_completion'
 function find_aws_key { if [ -z "$1" ];then echo "NEED ACCESS KEY";else aws --output text iam list-users | awk '{print $NF}' | xargs -P10 -n1 aws --output text iam list-access-keys --user-name | grep "$1"; fi }
 
 export -f find_aws_key
+
+function backmeup { if [ -z "$1" ]; then echo "NEED TARGET FILE"; else cd ~ && tar -czvf "$1" ./.emr.json ./.ssh ./.aws ./.fog ./.extra ./.gitconfig ./.s3cfg; fi }
+
+export -f backmeup
