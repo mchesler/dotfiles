@@ -8,3 +8,5 @@ gem install bundler
 rvm install ruby-1.9.3-p551
 rvm use 1.9.3-p551
 gem install bundler
+
+gem install lunchy
