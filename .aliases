@@ -113,3 +113,7 @@ export -f find_aws_key
 function backmeup { if [ -z "$1" ]; then echo "NEED TARGET FILE"; else cd ~ && tar -czvf "$1" ./.emr.json ./.ssh ./.aws ./.fog ./.extra ./.gitconfig ./.s3cfg; fi }
 
 export -f backmeup
+
+# Prevent csshx from dropping hosts because of stale host keys
+# (not the greatest thing ever to do, but hosts come and go and IPs get reused)
+alias csshX='/usr/local/bin/csshX --ssh_args "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" '
