@@ -117,3 +117,7 @@ export -f backmeup
 # Prevent csshx from dropping hosts because of stale host keys
 # (not the greatest thing ever to do, but hosts come and go and IPs get reused)
 alias csshX='/usr/local/bin/csshX --ssh_args "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" '
+
+function check_ssl { if [ -z "$1" ]; then echo "What site?"; else echo | openssl s_client -connect ${1}:443 2>/dev/null | openssl x509 -noout -text; fi }
+
+export -f check_ssl
