@@ -40,6 +40,8 @@ if command -v brew >/dev/null 2>&1; then
   fi
 fi
 
+[ -f ~/.git_completion.bash ] && source ~/.git_completion.bash
+
 if command -v rbenv >/dev/null 2>&1; then
   eval "$(rbenv init -)"
 fi
