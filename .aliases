@@ -121,3 +121,8 @@ alias csshX='/usr/local/bin/csshX --ssh_args "-o StrictHostKeyChecking=no -o Use
 function check_ssl { if [ -z "$1" ]; then echo "What site?"; else echo | openssl s_client -connect ${1}:443 2>/dev/null | openssl x509 -noout -text; fi }
 
 export -f check_ssl
+
+# Remove a specific line from known_hosts
+function known_hosts_rehab { if [ -z "$1" ]; then echo "What line?"; else sed -i bak "${1}d" ~/.ssh/known_hosts; fi }
+
+export -f known_hosts_rehab
