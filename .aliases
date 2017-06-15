@@ -131,3 +131,6 @@ export -f known_hosts_rehab
 function dping { if [ -z "$1" ]; then echo "What host?"; else ping $1 | while read pong; do echo "$(date): $pong"; done; fi }
 
 export -f dping
+
+# Cleanup merged branches
+alias clean_branches="git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d"
