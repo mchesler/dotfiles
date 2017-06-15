@@ -133,4 +133,4 @@ function dping { if [ -z "$1" ]; then echo "What host?"; else ping $1 | while re
 export -f dping
 
 # Cleanup merged branches
-alias clean_branches="git branch --merged | egrep -v "(^\*|master|dev)" | xargs git branch -d"
+alias clean_branches="git branch --merged | egrep -v \"(^\*|master|dev)\" | xargs git branch -d"
