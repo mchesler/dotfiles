@@ -32,3 +32,5 @@ brew install s3cmd
 brew install nvm
 mkdir ~/.nvm
 cp $(brew --prefix nvm)/nvm-exec ~/.nvm/
+
+brew install python3

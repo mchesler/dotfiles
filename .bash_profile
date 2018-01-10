@@ -47,3 +47,7 @@ if command -v rbenv >/dev/null 2>&1; then
 fi
 
 complete -C aws_completer aws
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
