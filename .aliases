@@ -107,11 +107,9 @@ export -f ssh_copy_id
 alias sshcomp='source ~/.ssh_completion'
 
 function find_aws_key { if [ -z "$1" ];then echo "NEED ACCESS KEY";else aws --output text iam list-users | awk '{print $NF}' | xargs -P10 -n1 aws --output text iam list-access-keys --user-name | grep "$1"; fi }
-
 export -f find_aws_key
 
 function backmeup { if [ -z "$1" ]; then echo "NEED TARGET FILE"; else cd ~ && tar -czvf "$1" ./.emr.json ./.ssh ./.aws ./.fog ./.extra ./.gitconfig ./.s3cfg; fi }
-
 export -f backmeup
 
 # Prevent csshx from dropping hosts because of stale host keys
@@ -119,18 +117,22 @@ export -f backmeup
 alias csshX='/usr/local/bin/csshX --ssh_args "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" '
 
 function check_ssl { if [ -z "$1" ]; then echo "What site?"; else echo | openssl s_client -connect ${1}:443 2>/dev/null | openssl x509 -noout -text; fi }
-
 export -f check_ssl
 
 # Remove a specific line from known_hosts
 function known_hosts_rehab { if [ -z "$1" ]; then echo "What line?"; else sed -i bak "${1}d" ~/.ssh/known_hosts; fi }
-
 export -f known_hosts_rehab
 
 # Ping prepended with datestamps
 function dping { if [ -z "$1" ]; then echo "What host?"; else ping $1 | while read pong; do echo "$(date): $pong"; done; fi }
-
 export -f dping
 
 # Cleanup merged branches
 alias clean_branches="git branch --merged | egrep -v \"(^\*|master|dev)\" | xargs git branch -d"
+
+# Reverse a space separated list
+function reverse { tac=$(which tac || which gtac); tac <(echo "$@" | tr ' ' '\n') | tr '\n' ' ' }
+export -f reverse
+
+# ssh without all the complaining (and timeout)
+alias shh="ssh -o ConnectTimeout=5 -o BatchMode=yes -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
