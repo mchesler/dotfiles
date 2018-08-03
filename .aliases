@@ -100,7 +100,6 @@ alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
 
 # OSX doesn't come with ssh_copy_id.  This does the same.
 function ssh_copy_id { cat ~/.ssh/id_rsa.pub | ssh $1 "(cat > tmp.pubkey ; mkdir -p .ssh ; touch .ssh/authorized_keys ; sed -i.bak -e '/$(awk '{print $NF}' ~/.ssh/id_rsa.pub)/d' .ssh/authorized_keys; cat tmp.pubkey >> .ssh/authorized_keys; rm tmp.pubkey)"; }
-
 export -f ssh_copy_id
 
 # Rebuild SSH completion
@@ -131,7 +130,7 @@ export -f dping
 alias clean_branches="git branch --merged | egrep -v \"(^\*|master|dev)\" | xargs git branch -d"
 
 # Reverse a space separated list
-function reverse { tac=$(which tac || which gtac); tac <(echo "$@" | tr ' ' '\n') | tr '\n' ' ' }
+function reverse { tac=$(which tac || which gtac); tac <(echo "$@" | tr ' ' '\n') | tr '\n' ' '; }
 export -f reverse
 
 # ssh without all the complaining (and timeout)
