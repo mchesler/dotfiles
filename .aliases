@@ -130,7 +130,7 @@ export -f dping
 alias clean_branches="git branch --merged | egrep -v \"(^\*|master|dev)\" | xargs git branch -d"
 
 # Reverse a space separated list
-function reverse { tac=$(which tac || which gtac); tac <(echo "$@" | tr ' ' '\n') | tr '\n' ' '; }
+function reverse { tac=$(which tac || which gtac); echo "$@" | tr ' ' '\n'| tac - | tr '\n' ' '; }
 export -f reverse
 
 # ssh without all the complaining (and timeout)
