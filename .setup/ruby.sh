@@ -2,11 +2,14 @@
 
 curl -sSL https://get.rvm.io | bash -s stable
 
-rvm install 2.2.2
-rvm use 2.2.2
-gem install bundler
-rvm install ruby-1.9.3-p551
-rvm use 1.9.3-p551
+source ~/.rvm/scripts/rvm
+
+rvm install 2.3.6 --with-openssl-dir=`brew --prefix openssl`
+rvm use 2.3.6
 gem install bundler
 
-gem install lunchy
+rvm install 2.5.1 --with-openssl-dir=`brew --prefix openssl`
+rvm --default use 2.5.1
+gem install bundler
+
+gem install launchy
