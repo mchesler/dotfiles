@@ -46,6 +46,9 @@ cp $(brew --prefix nvm)/nvm-exec ~/.nvm/
 
 brew install python3
 
+# Aerial screensaver https://github.com/JohnCoates/Aerial
+brew cask install aerial
+
 # brew install cgal
 # brew install enscript
 # brew install freetype
