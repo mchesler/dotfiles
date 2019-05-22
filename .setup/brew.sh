@@ -35,6 +35,7 @@ brew install tmux
 brew install xz
 brew install youtube-dl
 
+brew cask install adoptopenjdk
 brew install awscli
 brew install ec2-api-tools
 brew install s3cmd
