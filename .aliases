@@ -131,7 +131,7 @@ function reverse { tac=$(which tac || which gtac); echo "$@" | tr ' ' '\n'| tac 
 export -f reverse
 
 # ssh without all the complaining (and timeout)
-alias shh="ssh -o ConnectTimeout=5 -o BatchMode=yes -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+alias shh="ssh -o ConnectTimeout=5 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 
 # Display SSL cert from site
 function check_ssl { if [ -z "$1" ]; then echo "What site?"; else echo | openssl s_client -servername ${1} -connect ${1}:443 2>/dev/null | openssl x509 -noout -text; fi }
