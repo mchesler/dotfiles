@@ -151,3 +151,18 @@ function check_ssl_cert_key {
   fi
 }
 export -f check_ssl_cert_key
+
+# Open github PR for current branch
+function git_pr {
+  gh_path="$(git remote get-url origin | awk -F':' '{print $2}' | sed 's/.git//')"
+  git_branch="$(git rev-parse --abbrev-ref HEAD)"
+  open "https://github.com/${gh_path}/pull/new/${git_branch}"
+}
+export -f git_pr
+
+# Push a new branch
+function gpb {
+  git_branch="$(git rev-parse --abbrev-ref HEAD)"
+  git push --set-upstream origin ${git_branch}
+}
+export -f gpb
