@@ -166,3 +166,10 @@ function gpb {
   git push --set-upstream origin ${git_branch}
 }
 export -f gpb
+
+# Switch to master and pull latest, trimming deleted branches
+function gppm { # "git pull prune master"
+  git checkout master
+  git pull -p
+}
+export -f gppm
