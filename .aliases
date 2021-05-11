@@ -199,3 +199,7 @@ function gppm { # "git pull prune master"
 function mkcd() {
   mkdir -p $1 && cd $1;
 }
+
+# Fix history with oh-my-zsh to include timestamps
+unalias history
+alias history="fc -i -l 1"
