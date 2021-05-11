@@ -1,5 +1,9 @@
 #!/bin/bash -x
 
+# Install oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Swap these once vscodium is built for M1 Macs
@@ -7,6 +11,7 @@
 brew install --cask visual-studio-code
 
 brew install zsh-completions
+brew install zsh-syntax-highlighting
 
 brew install autoconf
 brew install automake
@@ -32,3 +37,9 @@ brew install awscli
 
 # Aerial screensaver https://github.com/JohnCoates/Aerial
 brew install --cask aerial
+
+# Install VSCode Extensions
+xargs -n1 code --install-extension < ~/.setup/init/vscode-extensions.txt
+
+# Apply VSCode Settings
+cp ~/.setup/init/vscode-settings.json ~/Library/Application\ Support/Code/User/settings.json

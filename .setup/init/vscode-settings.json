@@ -1,0 +1,11 @@
+{
+    "telemetry.enableTelemetry": false,
+    "files.autoSave": "afterDelay",
+    "editor.fontFamily": "Hack",
+    "editor.fontSize": 14,
+    "editor.matchBrackets": true,
+    "editor.renderWhitespace": "all",
+    "editor.rulers": 100,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true
+}
