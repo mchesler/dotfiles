@@ -1,0 +1,7 @@
+esbenp.prettier-vscode
+hashicorp.terraform
+ms-python.python
+ms-python.vscode-pylance
+ms-toolsai.jupyter
+ms-vscode-remote.remote-ssh
+ms-vscode-remote.remote-ssh-edit

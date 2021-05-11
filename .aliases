@@ -9,8 +9,6 @@ alias d="cd ~/Dropbox"
 alias w="cd ~/Workspace"
 alias g="git"
 alias v="vim"
-alias m="mate ."
-alias s="subl ."
 
 # List all files colorized in long format, including dot files
 alias la="ls -Gla"
@@ -45,10 +43,10 @@ alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Canonical hex dump; some systems have this symlinked
-type -t hd > /dev/null || alias hd="hexdump -C"
+type -w hd > /dev/null || alias hd="hexdump -C"
 
 # OS X has no `md5sum`, so use `md5` as a fallback
-type -t md5sum > /dev/null || alias md5sum="md5"
+type -w md5sum > /dev/null || alias md5sum="md5"
 
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
@@ -99,43 +97,70 @@ alias pumpitup="osascript -e 'set volume 10'"
 alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
 
 # OSX doesn't come with ssh_copy_id.  This does the same.
-function ssh_copy_id { cat ~/.ssh/id_rsa.pub | ssh $1 "(cat > tmp.pubkey ; mkdir -p .ssh ; touch .ssh/authorized_keys ; sed -i.bak -e '/$(awk '{print $NF}' ~/.ssh/id_rsa.pub)/d' .ssh/authorized_keys; cat tmp.pubkey >> .ssh/authorized_keys; rm tmp.pubkey)"; }
-export -f ssh_copy_id
+function ssh_copy_id {
+  cat ~/.ssh/id_rsa.pub | ssh $1 "(cat > tmp.pubkey ; mkdir -p .ssh ; touch .ssh/authorized_keys ; sed -i.bak -e '/$(awk '{print $NF}' ~/.ssh/id_rsa.pub)/d' .ssh/authorized_keys; cat tmp.pubkey >> .ssh/authorized_keys; rm tmp.pubkey)";
+}
 
 # Rebuild SSH completion
 alias sshcomp='source ~/.ssh_completion'
 
-function find_aws_key { if [ -z "$1" ];then echo "NEED ACCESS KEY";else aws --output text iam list-users | awk '{print $NF}' | xargs -P10 -n1 aws --output text iam list-access-keys --user-name | grep "$1"; fi }
-export -f find_aws_key
+function find_aws_key {
+  if [[ -z "$1" ]];then
+    echo "NEED ACCESS KEY"
+  else
+    aws --output text iam list-users | awk '{print $NF}' | xargs -P10 -n1 aws --output text iam list-access-keys --user-name | grep "$1"
+  fi
+}
 
-function backmeup { if [ -z "$1" ]; then echo "NEED TARGET FILE"; else cd ~ && tar -czvf "$1" ./.emr.json ./.ssh ./.aws ./.fog ./.extra ./.git* ./.s3cfg; fi }
-export -f backmeup
+function backmeup {
+  if [[ -z "$1" ]]; then
+    echo "NEED TARGET FILE"
+  else
+    cd ~ && tar -czvf "$1" ./.ssh ./.aws ./.fog ./.extra ./.git* ./.s3cfg
+  fi
+}
 
 # Prevent csshx from dropping hosts because of stale host keys
 # (not the greatest thing ever to do, but hosts come and go and IPs get reused)
 alias csshX='/usr/local/bin/csshX --ssh_args "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" '
 
 # Remove a specific line from known_hosts
-function known_hosts_rehab { if [ -z "$1" ]; then echo "What line?"; else sed -i bak "${1}d" ~/.ssh/known_hosts; fi }
-export -f known_hosts_rehab
+function known_hosts_rehab {
+  if [[ -z "$1" ]]; then
+    echo "What line?"
+  else
+    sed -i bak "${1}d" ~/.ssh/known_hosts
+  fi
+}
 
 # Ping prepended with datestamps
-function dping { if [ -z "$1" ]; then echo "What host?"; else ping $1 | while read pong; do echo "$(date): $pong"; done; fi }
-export -f dping
+function dping {
+  if [[ -z "$1" ]]; then
+    echo "What host?"
+  else
+    ping $1 | while read pong; do echo "$(date): $pong"; done
+  fi
+}
 
 # Cleanup merged branches
 alias clean_branches="git branch --merged | egrep -v \"(^\*|master|dev)\" | xargs git branch -d"
 
 # Reverse a space separated list
-function reverse { tac=$(which tac || which gtac); echo "$@" | tr ' ' '\n'| tac - | tr '\n' ' '; }
-export -f reverse
+function reverse {
+  tac=$(which tac || which gtac); echo "$@" | tr ' ' '\n'| tac - | tr '\n' ' '
+}
 
 # ssh without all the complaining (and timeout)
 alias shh="ssh -o ConnectTimeout=5 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 
 # Display SSL cert from site
-function check_ssl { if [ -z "$1" ]; then echo "What site?"; else echo | openssl s_client -servername ${1} -connect ${1}:443 2>/dev/null | openssl x509 -noout -text; fi }
-export -f check_ssl
+function check_ssl {
+  if [[ -z "$1" ]]; then
+    echo "What site?"
+  else
+    echo | openssl s_client -servername ${1} -connect ${1}:443 2>/dev/null | openssl x509 -noout -text
+  fi
+}
 
 # Confirm SSL cert and key match
 function check_ssl_cert_key {
@@ -150,7 +175,6 @@ function check_ssl_cert_key {
     fi
   fi
 }
-export -f check_ssl_cert_key
 
 # Open github PR for current branch
 function git_pr {
@@ -158,18 +182,24 @@ function git_pr {
   git_branch="$(git rev-parse --abbrev-ref HEAD)"
   open "https://github.com/${gh_path}/pull/new/${git_branch}"
 }
-export -f git_pr
 
 # Push a new branch
 function gpb {
   git_branch="$(git rev-parse --abbrev-ref HEAD)"
   git push --set-upstream origin ${git_branch}
 }
-export -f gpb
 
 # Switch to master and pull latest, trimming deleted branches
 function gppm { # "git pull prune master"
   git checkout master
   git pull -p
 }
-export -f gppm
+
+# Create a function to make a dir and then cd into it
+function mkcd() {
+  mkdir -p $1 && cd $1;
+}
+
+# Fix history with oh-my-zsh to include timestamps
+unalias history
+alias history="fc -i -l 1"
