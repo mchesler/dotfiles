@@ -38,7 +38,7 @@ brew install awscli
 # Aerial screensaver https://github.com/JohnCoates/Aerial
 brew install --cask aerial
 
-# Install VSCode Extensions
+# Install VSCode Extensions (Backup via `code --list-extensions > vscode-extensions.txt`)
 xargs -n1 code --install-extension < ~/.setup/init/vscode-extensions.txt
 
 # Apply VSCode Settings
