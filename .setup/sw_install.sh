@@ -20,7 +20,7 @@ brew install coreutils
 
 brew install mtr
 brew install speedtest-cli
-brew install terraform
+brew install tfenv
 brew install telnet
 brew install watch
 brew install youtube-dl
