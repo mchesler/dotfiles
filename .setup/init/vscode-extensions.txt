@@ -1,3 +1,4 @@
+eamodio.gitlens
 esbenp.prettier-vscode
 hashicorp.terraform
 ms-python.python
