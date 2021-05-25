@@ -86,3 +86,9 @@ compinit
 
 # Support zsh-syntax-highlighting
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Support GCloud SDK
+for file in completion path; do
+  [[ -r "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/${file}.zsh.inc" ]] && source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/${file}.zsh.inc"
+done
+unset file

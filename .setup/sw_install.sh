@@ -34,6 +34,7 @@ brew install the_silver_searcher
 brew install tmux
 
 brew install awscli
+brew install --cask google-cloud-sdk
 
 # Aerial screensaver https://github.com/JohnCoates/Aerial
 brew install --cask aerial
