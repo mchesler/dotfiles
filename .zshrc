@@ -70,8 +70,9 @@ PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_colo
 RPROMPT='[%D %*]'
 ZSH_THEME_GIT_PROMPT_DIRTY="⚡"
 
+BREW_PREFIX=$(brew --prefix)
 # Customize to your needs...
-export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=${BREW_PREFIX}/bin:${BREW_PREFIX}/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 # Load ~/.extra, ~/.aliases and ~/.ssh_completion
 # ~/.extra can be used for settings you don’t want to commit
@@ -85,10 +86,10 @@ autoload -Uz compinit
 compinit
 
 # Support zsh-syntax-highlighting
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ${BREW_PREFIX}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Support GCloud SDK
 for file in completion path; do
-  [[ -r "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/${file}.zsh.inc" ]] && source "/opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/${file}.zsh.inc"
+  [[ -r "${BREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/${file}.zsh.inc" ]] && source "${BREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/${file}.zsh.inc"
 done
 unset file
