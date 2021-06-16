@@ -195,6 +195,17 @@ function gppm { # "git pull prune master"
   git pull -p
 }
 
+# Run git status on all subdirectories of provided path
+function gsrecurse {
+  find ${1} -type d | while read -r dir; do
+    if [[ -d ${dir}/.git ]]; then
+      echo "${dir} :"
+      git -C ${dir} status
+      echo
+    fi
+  done
+}
+
 # Create a function to make a dir and then cd into it
 function mkcd() {
   mkdir -p $1 && cd $1;
