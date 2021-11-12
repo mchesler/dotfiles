@@ -61,7 +61,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(osx git brew vscode)
+plugins=(macos git brew vscode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -95,7 +95,7 @@ done
 unset file
 
 export PYENV_SHELL=zsh
-source "${BREW_PREFIX}/Cellar/pyenv/2.0.0/libexec/../completions/pyenv.zsh"
+source ${BREW_PREFIX}/Cellar/pyenv/*/completions/pyenv.zsh
 command pyenv rehash 2>/dev/null
 pyenv() {
   local command
