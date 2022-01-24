@@ -26,6 +26,9 @@ brew bundle --file=./Brewfile
 # Clean up permissions
 compaudit | xargs chmod g-w,o-w
 
+# Install basic Python requirements
+pip3 install -r ~/.setup/requirements.txt
+
 # Install VSCode Extensions (Backup via `code --list-extensions > vscode-extensions.txt`)
 xargs -n1 code --install-extension < ~/.setup/init/vscode-extensions.txt
 

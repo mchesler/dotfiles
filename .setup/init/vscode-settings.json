@@ -1,11 +1,39 @@
 {
-    "telemetry.enableTelemetry": false,
+    "telemetry.telemetryLevel": "off",
     "files.autoSave": "afterDelay",
     "editor.fontFamily": "Hack",
     "editor.fontSize": 14,
-    "editor.matchBrackets": true,
+    "editor.formatOnSave": true,
+    "editor.guides.bracketPairs": true,
+    "editor.inlineSuggest.enabled": true,
+    "editor.matchBrackets": "always",
     "editor.renderWhitespace": "all",
-    "editor.rulers": 100,
+    "editor.rulers": [
+        {
+            "column": 80,
+            "color": "#1900ff"
+        }
+    ],
+    "editor.suggestSelection": "first",
+    "editor.tabSize": 4,
     "files.trimTrailingWhitespace": true,
-    "files.insertFinalNewline": true
+    "files.insertFinalNewline": true,
+    "python.formatting.provider": "black",
+    "python.linting.flake8Enabled": true,
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        },
+        "editor.rulers": [
+            {
+                "column": 88,
+                "color": "#1900ff"
+            },
+            {
+                "column": 100,
+                "color": "#f50a29"
+            }
+        ]
+    },
+    "terminal.integrated.scrollback": 100000
 }
