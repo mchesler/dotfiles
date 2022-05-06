@@ -72,6 +72,9 @@ defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 # Disable automatic period substitution as it’s annoying when typing code
 defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
 
+# Enable Ctrl+Cmd+Click anywhere to move windows
+defaults write NSGlobalDomain NSWindowShouldDragOnGesture -bool true
+
 ###############################################################################
 # SSD-specific tweaks                                                         #
 ###############################################################################
