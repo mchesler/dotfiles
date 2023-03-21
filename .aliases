@@ -224,3 +224,6 @@ function mkcd() {
 # Fix history with oh-my-zsh to include timestamps
 unalias history
 alias history="fc -i -l 1"
+
+# ag, but only for terraform
+alias tfag="ag -G '.*\.tf'"
