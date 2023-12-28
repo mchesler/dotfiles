@@ -483,11 +483,16 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 cp ~/.setup/fonts/* ~/Library/Fonts/
 
 ###############################################################################
+# Moom                                                                        #
+###############################################################################
+defaults import com.manytricks.Moom ~/.setup/init/Moom.plist
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
-  "Dock" "Finder" "Messages" "SystemUIServer" "Terminal"; do
+  "Dock" "Finder" "Messages" "SystemUIServer" "Terminal" "Moom"; do
   killall "${app}" > /dev/null 2>&1
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
